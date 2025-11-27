@@ -92,6 +92,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Fortify Route Paths
+    |--------------------------------------------------------------------------
+    | Here you may specify custom paths for Fortify routes.
+    |
+    */
+
+    'paths' => [
+        'login' => '/admin',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Fortify Routes Middleware
     |--------------------------------------------------------------------------
     |
@@ -144,7 +156,7 @@ return [
     */
 
     'features' => [
-        Features::registration(),
+        // Features::registration(), -> disabled registration
         Features::resetPasswords(),
         Features::emailVerification(),
         Features::twoFactorAuthentication([
