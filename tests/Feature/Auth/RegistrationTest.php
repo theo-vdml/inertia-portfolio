@@ -1,5 +1,14 @@
 <?php
 
+use Laravel\Fortify\Features;
+use Tests\TestCase;
+
+beforeEach(function () {
+    if (!Features::enabled(Features::registration())) {
+        $this->markTestSkipped('Registration feature is not enabled.');
+    }
+});
+
 test('registration screen can be rendered', function () {
     $response = $this->get(route('register'));
 
