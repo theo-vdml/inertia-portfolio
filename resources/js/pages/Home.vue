@@ -1,15 +1,21 @@
 <script setup lang="ts">
+import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
-// Portfolio data
-const profile = {
-    name: 'Your Name',
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix',
-    role: 'Full-Stack Developer',
-    bio: 'Building minimalist digital experiences with modern technologies. Passionate about clean code, design systems, and user-centric interfaces.',
-    location: 'Earth',
-    availability: 'Available for projects',
-};
+defineProps<{
+    settings: {
+        site_name: string;
+        site_description: string;
+    };
+    profile: {
+        name: string;
+        avatar: string;
+        bio: string;
+        role: string;
+        location: string;
+        is_available: boolean;
+    };
+}>();
 
 const links = ref([
     {
@@ -79,6 +85,11 @@ const getIcon = (icon: string) => {
 </script>
 
 <template>
+    <Head>
+        <title>{{ settings.site_name }}</title>
+        <meta name="description" :content="settings.site_description" />
+    </Head>
+
     <div
         class="dark min-h-screen bg-gradient-to-br from-black via-zinc-950 to-black font-mono text-white antialiased"
     >
@@ -170,7 +181,11 @@ const getIcon = (icon: string) => {
                         <div
                             class="size-2 animate-pulse rounded-full bg-green-400"
                         />
-                        <span>{{ profile.availability }}</span>
+                        <span>{{
+                            profile.is_available
+                                ? 'Available for work'
+                                : 'Not available'
+                        }}</span>
                     </div>
                 </div>
 
