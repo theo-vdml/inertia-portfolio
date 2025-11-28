@@ -1,10 +1,15 @@
 <?php
 
+use App\Settings\ProfileSettings;
+use App\Settings\SiteSettings;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Home');
+Route::get('/', function (SiteSettings $settings, ProfileSettings $profile) {
+    return Inertia::render('Home', [
+        'settings' => $settings,
+        'profile' => $profile
+    ]);
 })->name('home');
 
 Route::get('dashboard', function () {
